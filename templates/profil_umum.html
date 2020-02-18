@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        L.mapquest.key = 'uJD0kVlizTwSL6AqjtnjqdPcAwUkyYGS';
+
+        var map = L.mapquest.map('map', {
+          center: [4.61453085, 96.7907716],
+          layers: L.mapquest.tileLayer('map'),
+          zoom: 15
+        });
+
+        L.mapquest.textMarker([4.61453085, 96.7907716], {
+          text: 'Dayah Nurul Iman',
+          subtext: 'Iconic coffeehouse chain',
+          position: 'right',
+          type: 'marker',
+          icon: {
+            primaryColor: '#333333',
+            secondaryColor: '#417505',
+            size: 'sm'
+          }
+        }).addTo(map);
+
+        map.addControl(L.mapquest.control());
+      }
+    </script>
+  </head>
+
+  <body style="border: 0; margin: 0;">
+    <div id="map" style="width: 100%; height: 530px;"></div>
+  </body>
+</html>

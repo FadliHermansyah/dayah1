@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block app_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'profil/css/styles.css' %}"> 
+{% endblock app_css %}
+
+<!-- {% block header %}
+<h1 class="display-4" style="color :darkgreen">{{heading}}</h1>
+<p class="lead" style="color :darkgreen">{{subheading}}</p>
+{% endblock header %} -->
+
+{% block cd %}
+  <h1> Graphs </h1>
+  <hr>
+  <div class="row">
+      <div class="col-sm-6">
+          <h3>Jumlah Pekerja</h3>
+          <canvas id="jumlah_pekerja" style="width: 100px !important;"></canvas>
+      </div>
+      <div class="col-sm-6">
+        <h3>Luas Tanah</h3>
+        <canvas id="luas" style="width: 100px !important;"></canvas>
+    </div>
+  </div>
+
+
+  
+  {{ block.super }}
+
+{% endblock cd %}

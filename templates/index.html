@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block app_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">  
+{% endblock app_css %}
+
+{% block cd %}
+<!-- <div class="card-deck">
+    {% for dayahs in dayah %}       
+        <div class="card">
+        <img class="card-img-top" src="{{dayahs.foto_profil}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Dayah {{dayahs.nama_dayah}}</h5>
+            <p class="card-text">- {{dayahs.pemimpin_dayah}} <br>- {{dayahs.alamat}}</p>
+            <input type="button" class="btn btn-info addf" value="Details" onclick="location.href='{% url 'profil_dayah' dayahs.id %}';">   
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+        </div>
+    {% endfor %}
+</div> -->
+<div class="card-columns">
+    {% for dayahs in dayah %}  
+        <div class="card">
+        <img class="card-img-top" src="{{dayahs.foto_profil}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Dayah {{dayahs.nama_dayah}}</h5>
+            <p class="card-text">{{dayahs.pemimpin_dayah}} <br>- {{dayahs.alamat}}</p>
+            <input type="button" class="btn btn-info details" value="Details" onclick="location.href='{% url 'profil_dayah' dayahs.id %}';">
+        </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock cd %}
+
+  

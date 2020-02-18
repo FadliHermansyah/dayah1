@@ -1,0 +1,200 @@
+{% load static %}
+
+<script src='{% static "vendor/jquery/jquery.js" %}' type="text/javascript"></script>
+<script src='{% static "vendor/popper/popper.js" %}' type="text/javascript"></script>
+<script src='{% static "js/scrolling.js" %}' type="text/javascript"></script>
+<script src='{% static "vendor/bootstrap/bootstrap.js" %}' type="text/javascript"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    var randomColorGenerator = function () {
+        return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
+    };
+    var options = {
+        responsive: true,
+        maintainAspectRatio: true,
+        legend: {
+            position: 'left'
+        },
+        title: {
+            display: true
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    };
+    window.onload = function () {
+
+        var ctx = document.getElementById("jumlah_pekerja");
+                lineChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [{% for ringkas in ringkasan %}'{{ringkas.nama_dayah}}',{% endfor %}],
+                    datasets: [{
+                        label: 'Jumlah Pekerja',
+                        data: [{% for ringkas in ringkasan %}'{{ringkas.jumlah_pekerja}}',{% endfor %}],
+                        backgroundColor: [{% for ringkas in ringkasan %}randomColorGenerator(),{% endfor %}]
+                            },
+                        ]
+                },
+                options: {
+                    animation: {
+                        duration: 5000
+                      },
+                    legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Jumlah Pekerja'
+                        },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                            
+                        }]
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'center',
+                            align : 'center',
+                            font : {
+                                weight : 'bold',
+                                size : '15'
+                            },
+                        }
+                    }
+                }
+            });
+
+        var ctx = document.getElementById("luas");
+            lineChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: [{% for luass in luas %}'{{luass.nama_dayah}}',{% endfor %}],
+                datasets: [{
+                    label: 'Luas Tanah',
+                    data: [{% for luass in luas %}'{{luass.luas_tanah}}',{% endfor %}],
+                    backgroundColor: [{% for luass in luas %}randomColorGenerator(),{% endfor %}]
+                        },
+                    ]
+            },
+            options: {
+                animation: {
+                    duration: 5000
+                  },
+                legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Luas Tanah'
+                    },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                        
+                    }]
+                },
+                plugins : {
+                    datalabels : {
+                        color : '#fff',
+                        anchor : 'center',
+                        align : 'center',
+                        font : {
+                            weight : 'bold',
+                            size : '15'
+                        },
+                    }
+                }
+            }
+        });
+
+
+            ctx = document.getElementById("sma-chart").getContext('2d');
+            lineChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    
+                    datasets: [{
+                        label : ['RINGKASAN'],
+                        data: [{% for ringkas in ringkasan %}'{{ringkas.sma}}',{% endfor %}],
+                        backgroundColor: [{% for ringkas in ringkasan %}randomColorGenerator(),{% endfor %}],
+                        labels: [{% for ringkas in ringkasan %}'{{ringkas.nama_dayah}}',{% endfor %}]
+                    }]
+                }, options: {
+                    responsive : true,
+                    legend : {
+                        position : 'bottom'
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'end',
+                            align : 'start',
+                            font : {
+                                weight : 'bold',
+                                size : '10'
+                            },
+                            formatter: (value) => {
+                                return value + " %";
+                            }
+                        }
+                    }
+                }
+            });
+    }
+
+    function toogle_div(id) {
+        var divelement = document.getElementById(id);
+        if(divelement.style.display == 'none')
+            divelement.style.display = 'block';
+        else
+            divelement.style.display = 'none';
+    }
+
+    
+
+var id_dayah = $("button").click(function() {
+    this.id;
+    //alert(this.id);  or alert($(this).attr('id'));
+    //document.getElementById('id_dayah').style.color = id_profil; console.log($(this).data('id'));
+    //var url2 = url.match(/FP(\d)/)
+
+   // var url = $(this).data('url')
+ //   var url2 = url.match(/FP(\d)/)
+  //  console.log(url);
+    
+});
+var id_day = id_dayah;
+console.log(id_day);
+
+$(".see-details").on('click', function (){
+
+    $(".modal-bodys").html(`
+    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                <h1>{{dayahs.nama_dayah}}</h1>
+                <h1>{{dayahs.alamat}}</h1>
+                </div>
+            </div>
+        </div>
+        
+    `)
+})
+
+
+$(".details").on('click', function (){
+    var url = $(this).data('url');
+    console.log(url);
+
+})
+
+</script>

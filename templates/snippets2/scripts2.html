@@ -1,0 +1,521 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"> 
+<script src='{% static "vendor/jquery/jquery.js" %}' type="text/javascript"></script>
+<script src='{% static "vendor/popper/popper.js" %}' type="text/javascript"></script>
+<script src='{% static "js/scrolling.js" %}' type="text/javascript"></script>
+<script src='{% static "vendor/bootstrap/bootstrap.js" %}' type="text/javascript"></script>
+
+<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    var randomColorGenerator = function () {
+        return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
+    };
+    var options = {
+        responsive: true,
+        maintainAspectRatio: true,
+        legend: {
+            position: 'left'
+        },
+        title: {
+            display: true
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
+    };
+    window.onload = function () {
+
+        var ctx = document.getElementById("jumlah-pekerja");
+            lineChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['SMP', 'SMA', 'S1', 'S2', 'S3'],
+                    datasets: [{
+                        label: ['Jumlah Pekerja'],
+                        data: ['{{ringkasn.smp}}', '{{ringkasn.sma}}', '{{ringkasn.s1}}', '{{ringkasn.s2}}', '{{ringkasn.s3}}'],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator()
+                        ]
+                            },
+                        ]
+                },
+                options: {
+                    animation: {
+                        duration: 3000
+                      },
+                    legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Jumlah Pekerja Dayah'
+                        },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'center',
+                            align : 'center',
+                            font : {
+                                weight : 'bold',
+                                size : '15'
+                            },
+                        }
+                    }
+                }
+            });
+
+            var ctx = document.getElementById("jumlah-santri");
+                lineChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['santri','santriwati'],
+                    datasets: [{
+                        label : ['Jumlah santri'],
+                        data: ['{{santri.jumlah_santri}}','{{santri.jumlah_santriwati}}'],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        ]
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 2000
+                      },
+                    legend: { position : 'bottom' },
+                        title: {
+                            display: true,
+                            text: 'Jumlah Santri / wati Dayah'
+                        },
+                        plugins : {
+                            datalabels : {
+                                color : '#fff',
+                                anchor : 'end',
+                                align : 'start',
+                                font : {
+                                    weight : 'bold',
+                                    size : '12'
+                                },
+                            }
+                        }
+                    },
+                    
+            });
+
+            var ctx = document.getElementById("prestasi-alquran");
+            lineChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Santri', 'Santriwati'],
+                    datasets: [{
+                        label: 'Grafik Prestasi Santri/wati',
+                        data: ['{{prestasis.santri_penghafal}}', '{{prestasis.santriwati_penghafal}}'],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        ]
+                            },
+                        ]
+                },
+                options: {
+                    animation: {
+                        duration: 3000
+                      },
+                    legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Santri / wati Penghafal AlQur\'an'
+                        },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],   
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'center',
+                            align : 'center',
+                            font : {
+                                weight : 'bold',
+                                size : '15'
+                            },
+                        }
+                    }
+                }
+            });
+
+            var ctx = document.getElementById("prestasi-kitabkuning");
+                lineChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Santri', 'Santriwati'],
+                    datasets: [{
+                        label: 'Prestasi Santri/wati',
+                        data: ['{{prestasis.santri_baca_kitabkuning}}', '{{prestasis.santriwati_baca_kitabkuning}}'],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        ]
+                            },
+                        ]
+                },
+                options: {
+                    animation: {
+                        duration: 3000
+                      },
+                    legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Grafik Pembaca Kitab Kuning'
+                        },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'center',
+                            align : 'center',
+                            font : {
+                                weight : 'bold',
+                                size : '15'
+                            },
+                        }
+                    }
+                }
+            });
+
+
+        var ctx = document.getElementById("pelajaran");
+                lineChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['formal','non formal'],
+                    datasets: [{
+                        label : ['Jenis Pendidikan Yang Diterapkan'],
+                        data: ['{{pendidik.formal}}','{{pendidik.non_formal}}'],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        ]
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 2000
+                      },
+                    legend: { position : 'bottom' },
+                        title: {
+                            display: true,
+                            text: 'Jenis Pendidikan Yang Diterapkan'
+                        },
+                        plugins : {
+                            datalabels : {
+                                color : '#fff',
+                                anchor : 'end',
+                                align : 'start',
+                                font : {
+                                    weight : 'bold',
+                                    size : '10'
+                                },
+                                formatter: (value) => {
+                                    return value + " %";
+                                }
+                            }
+                        }
+                    },
+                    
+            });
+
+            var ctx = document.getElementById("sarana");
+                lineChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [
+                        'Kantor',
+                        'Perpustakaan',
+                        'Kamar Guru',
+                        'Kelas Santri',
+                        'Kelas Satriwati',
+                        'Kamar Santri',
+                        'Kamar Santriwati',
+                        'Kamar Tamu',
+                        'Mushola',
+                        'Dapur Umum',
+                        'Ruang Makan',
+                        'Ruang Kegiatan/Aula',
+                        'Komputer',
+                        'Pengeras Suara',
+                        'Kamar Mandi',
+                        'Kantin',
+                        'Tempat Wudhu',
+                        'Dipan'
+                        ],
+                    datasets: [{
+                        label: 'Sarana Prasarana',
+                        data: [
+                        '{{sarana.jml_kantor}}',
+                        '{{sarana.jml_perpustakaan}}',
+                        '{{sarana.jml_kamarguru}}',
+                        '{{sarana.jml_kelas_santri}}',
+                        '{{sarana.jml_kelas_santriwati}}',
+                        '{{sarana.jml_kamar_satri}}',
+                        '{{sarana.jml_kamar_santriwati}}',
+                        '{{sarana.jml_kamar_tamu}}',
+                        '{{sarana.jml_mushola}}',
+                        '{{sarana.jml_dapur_umum}}',
+                        '{{sarana.jml_ruang_makan}}',
+                        '{{sarana.jml_ruangkegiatan_aula}}',
+                        '{{sarana.jml_komputer}}',
+                        '{{sarana.jml_pengeras_suara}}',
+                        '{{sarana.jml_kamar_madi}}',
+                        '{{sarana.jml_kantin}}',
+                        '{{sarana.jml_tempat_wudhu}}',
+                        '{{sarana.jml_dipan}}'
+                            ],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator()
+                                ]
+                            },
+                        ]
+                },
+                options: {
+                    animation: {
+                        duration: 5000
+                      },
+                    legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Sarana Prasarana'
+                        },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                            
+                        }]
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'center',
+                            align : 'center',
+                            font : {
+                                weight : 'bold',
+                                size : '15'
+                            },
+                        }
+                    }
+                }
+            });
+
+            var ctx = document.getElementById("kesehatan");
+                lineChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [
+                        'Diare',
+                        'Gatal',
+                        'Demam',
+                        'Batuk',
+                        'Flu',
+                        'Penyakit Lain'
+                        ],
+                    datasets: [{
+                        label: 'Kesehatan Dayah',
+                        data: [
+                        '{{kesehatan.diare}}',
+                        '{{kesehatan.gatal}}',
+                        '{{kesehatan.demam}}',
+                        '{{kesehatan.batuk}}',
+                        '{{kesehatan.Flu}}',
+                        '{{kesehatan.Lainya}}'
+                            ],
+                        backgroundColor: [
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator(),
+                        randomColorGenerator()
+                                ]
+                            },
+                        ]
+                },
+                options: {
+                    animation: {
+                        duration: 5000
+                      },
+                    legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Kesehatan Dayah'
+                        },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                            
+                        }]
+                    },
+                    plugins : {
+                        datalabels : {
+                            color : '#fff',
+                            anchor : 'center',
+                            align : 'center',
+                            font : {
+                                weight : 'bold',
+                                size : '15'
+                            },
+                        }
+                    }
+                }
+            });
+
+            L.mapquest.key = 'uJD0kVlizTwSL6AqjtnjqdPcAwUkyYGS';
+
+            var map = L.mapquest.map('map', {
+              center: [4.61453085, 96.7907716],
+              layers: L.mapquest.tileLayer('map'),
+              zoom: 15
+            });
+    
+            let directionsControl = L.mapquest.directionsControl({
+              endInput: {
+                disabled: true,
+                geolocation: {
+                  enabled: false
+                }
+              },
+              addDestinationButton: {
+                enabled: false
+              }
+            }).addTo(map);
+            
+            directionsControl.setFirstDestination({
+              latLng: {
+                lat: '{{lokasi.latitude}}',
+                lng: '{{lokasi.longitude}}'
+              }
+            });
+            
+            L.mapquest.textMarker(['{{lokasi.latitude}}', '{{lokasi.longitude}}'], {
+                text: '{{dayah.nama_dayah}}',
+                subtext: 'ini adalah {{dayah.nama_dayah}}',
+                position: 'right',
+                type: 'marker',
+                icon: {
+                  primaryColor: '#333333',
+                  secondaryColor: '#417505',
+                  size: 'sm'
+                }
+              }).addTo(map);
+            map.addControl(L.mapquest.control());
+
+    }
+
+    function toogle_div(id) {
+        var divelement = document.getElementById(id);
+        if(divelement.style.display == 'none')
+            divelement.style.display = 'block';
+        else
+            divelement.style.display = 'none';
+    }
+
+    
+</script>
+
+
+<!-- var ctx = document.getElementById("bar-tes");
+lineChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['Jumlah Pekerja', 'SMP', 'SMA', 'S1', 'S2', 'S3'],
+        datasets: [
+            { 
+                data: ['{{ringkasn.jumlah_pekerja}}'],
+                label: "Jumlah Pekerja",
+                backgroundColor: randomColorGenerator()
+            },
+            { 
+                data: ['{{ringkasn.smp}}'],
+                label: "SMP",
+                backgroundColor: randomColorGenerator()
+            },
+            { 
+                data: ['{{ringkasn.sma}}'],
+                label: "SMA",
+                backgroundColor: randomColorGenerator()
+            },
+            { 
+                data: ['{{ringkasn.s1}}'],
+                label: "S1",
+                backgroundColor: randomColorGenerator()
+            },
+            { 
+                data: ['{{ringkasn.s2}}'],
+                label: "S2",
+                backgroundColor: randomColorGenerator()
+            },
+            { 
+                data: ['{{ringkasn.s3}}'],
+                label: "S3",
+                backgroundColor: randomColorGenerator()
+            },
+                ]
+
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero:true,
+                responsive: false,
+                maintainAspectRatio: true
+                }
+            }]
+        }
+    }
+}); -->

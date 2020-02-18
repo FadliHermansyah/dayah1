@@ -1,0 +1,120 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block cd %}
+
+<div class="d-flex flex-row">
+  <div class="p-1">
+    <h3 style="margin-top: 40px; text-align: center;">{{dayah.nama_dayah}}</h3> <br>
+    <table class="table" id="table-profile">
+      <tr>
+          <td style="width: 140px;">Nama Pemimpin</td>
+          <td>: {{dayah.pemimpin_dayah}}</td> 
+      </tr>
+      <tr>
+          <td>Tahun Berdiri</td>
+          <td>: {{dayah.tahun_berdiri}} </td>
+      </tr>
+      <tr>
+        <td>No HP</th>
+        <td>: {{dayah.no_hp}} </td>
+      </tr>
+      <tr>
+        <td>Type Dayah</td>
+        <td>: {{dayah.type_dayah}} </td>
+      </tr>
+    </table>
+  </div>
+<div class="p-1-1">
+    <img src="/{{dayah.foto_profil}}" width="450">
+</div>
+  <div class="p-2">
+      <canvas id="jumlah-santri" height="170"></canvas>
+  </div>
+</div>
+
+<div class="d-flex flex-row">
+  <div class="p-3">
+    <canvas id="jumlah-pekerja"></canvas>
+  </div>
+  <div class="p-4">
+      <canvas id="pelajaran" height="200"></canvas>
+  </div>
+  <div class="p-4">
+      <canvas id="prestasi-alquran" height="200"></canvas>
+  </div>
+  <div class="p-4">
+    <canvas id="prestasi-kitabkuning" height="200"></canvas>
+  </div>
+</div>
+
+<div class="d-flex flex-row">
+  <div class="p-5">
+    <canvas id="sarana" height="100"></canvas>
+  </div>
+</div>
+
+<div class="d-flex flex-row">
+  <div class="p-6">
+    <canvas id="kesehatan" height="100"></canvas>
+  </div>
+  <div class="p-7">
+          <h6 style="text-align: center;">DATA JENIS PENDIDIKAN</h6>
+          <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" style="width: 5%;">No</th>
+                <th scope="col" style="width: 20%;">Hari</th>
+                <th scope="col">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Senin</td>
+                <td>{{pendidik.senin}}</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Selasa</td>
+                <td>{{pendidik.selasa}}</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Rabu</td>
+                <td>{{pendidik.rabu}}</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Kamis</td>
+                <td>{{pendidik.kamis}}</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Jumat</td>
+                <td>{{pendidik.jumat}}</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>Sabtu</td>
+                <td>{{pendidik.sabtu}}</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>Minggu</td>
+                <td>{{pendidik.minggu}}</td>
+              </tr>
+            </tbody>
+          </table>
+  </div>
+</div>
+
+<div class="map">
+    <h5 style="text-align: center; margin-top: 50px; margin-bottom: 30px;">LETAK GEOGRAFIS</h5>
+    <div id="map" style="width: 100%; height: 530px;"></div>
+    <a class="btn btn-primary" style="margin-top: 30px;" href="https://www.google.com/maps/dir//{{lokasi.latitude}},{{lokasi.longitude}}/@{{lokasi.latitude}},{{lokasi.longitude}},15z" role="button" target="_blank"> Buka Lokasi Dengan Google Map</a>
+</div>
+
+    {{ block.super }}
+{% endblock cd %}
+
